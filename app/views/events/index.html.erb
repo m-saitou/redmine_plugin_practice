@@ -1,0 +1,28 @@
+<h2>EventsController#index</h2>
+
+<div class="contextual">
+  <%= link_to_if_authorized(l(:label_events_new), 
+                            {:action => 'new', :project_id => @project}, 
+                            :class => 'icon icon-add') %>
+</div>
+
+<% if (@events.blank?) %>
+  <p class="nodata"><%= l(:label_no_data) %></p>
+<% else %>
+<table class="list">
+
+<thead><tr>  
+<th>#</th> <th><%=h l(:field_name) %></th>
+</tr></thead>
+
+<tbody>
+<% @events.each do |event| %>
+  <tr class="<%= cycle('odd', 'even') %>">
+  <td><%= event.id %></td>
+  <td><%= link_to event.name, project_event_path(@project, event.id) %></td>
+</tr>
+<% end %>
+</tbody>
+
+</table>
+<% end %>

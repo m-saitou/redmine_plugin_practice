@@ -1,0 +1,19 @@
+<h2>EventsController#new</h2>
+<%= labelled_form_for :event, @event,
+                  :url => project_events_path(@project) do |f| %>
+	<%= error_messages_for 'event' %>
+	<div class="box">
+	<p><%= f.text_field :subject,
+    	                :size => 100, :required => true %></p>
+	<p><%= f.text_area :description,
+    	               :class => 'wiki-edit' %></p>
+	<%= wikitoolbar_for 'event_description' %>
+	
+	<input type=text name="event[event_values_attributes][0][value]" value="value!!" />
+	<input type=text name="event[event_values_attributes][0][field_id]" value="1" />
+
+	<input type=text name="event[event_values_attributes][1][value]" value="value2!!" />
+	<input type=text name="event[event_values_attributes][1][field_id]" value="2" />
+	</div>
+    <%= f.submit l(:button_create) %>
+<% end %>
